@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>
+            OSU!
+        </title>
+        
+    </head>
+    <body>
+        <div class="intro" style="display:flex">
+            <form enctype="multipart/form-data" action="/play" method="post">
+                <div>
+                    <label for="file">Upload a Beatmap</label>
+                    <input type="file" name="beatmap" accept=".osz"/>
+                </div>
+                <p><br></p>
+                <div>
+                    <label for="file">Upload a Beatmap Skin</label>
+                    <input type="file" name="skin" accept=".osk"/>
+                </div>
+                <p><br></p>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+            
+        </div>
+        <div class="gameplay">
+            <canvas>
+            </canvas>
+        </div>
+    </body>
+</html>
+

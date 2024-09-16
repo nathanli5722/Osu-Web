@@ -1,4 +1,4 @@
-from flask import render_template, Flask, request, make_response, redirect
+from flask import render_template, Flask, request, make_response, redirect, send_file
 from zipfile import BadZipFile, ZipFile
 from threading import Thread
 
@@ -21,11 +21,11 @@ def play():
 
         try:
             with ZipFile(beatmap, 'r') as beatmap_ref:
-                beatmap_ref.extractall("beatmaps/" + beatmap.filename)
+                beatmap_ref.extractall("static/beatmaps/" + beatmap.filename)
 
 
             with ZipFile(skin, 'r') as skin_ref:
-                skin_ref.extractall("skins/" + skin.filename)
+                skin_ref.extractall("static/skins/" + skin.filename)
 
         except BadZipFile:
             print("ZIPPED BAD")
@@ -41,3 +41,20 @@ def set_cookie(beatmap, skin):
     resp.set_cookie("beatmap", "beatmaps/" + beatmap.filename)
     resp.set_cookie("skin", "skins/" + skin.filename)
     return resp
+
+
+
+#use to get image, but im not sure lol
+@app.post("/get")
+def get():
+    url = request.args.get(default="0")
+
+    if url == "0":
+        return render_template('error.html', 500)
+    
+    return send_file("static/skin/" + url, mimetype="image/png")
+
+
+
+if __name__ == "__main__":
+    app.run(port=8001)

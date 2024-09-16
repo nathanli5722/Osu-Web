@@ -1,6 +1,10 @@
 <html>
 <head>
-    <script src="{{url_for('static', filename='osu-web.js')}}"></script>
+    <noscript>Need javascript to run</noscript>
+    <script>
+        console.log("{{ beatmap }}");
+        console.log("{{ skin }}");
+    </script>
 </head>
 <body>
     {% if beatmap %}
